@@ -6,11 +6,10 @@ import Juego from './components/Juego.jsx'
 import GameDetail from './components/GameDetail.jsx'
 
 export default function App() {
-  const [route, setRoute] = useState('home') // 'home' | 'resenas' | 'juego'
+  const [route, setRoute] = useState('home')
   const [selectedGame, setSelectedGame] = useState(null)
 
   const navigate = (to, opts = {}) => {
-    // set selectedGame when navigating to pages that need a game
     if (to === 'juego' || to === 'detalle') {
       if (opts.game) setSelectedGame(opts.game)
       else setSelectedGame(null)
@@ -20,7 +19,6 @@ export default function App() {
 
   return (
     <div>
-      {/* Simple navigation header */}
       <header className="site-header">
         <div className="brand">
           <h1 style={{ textAlign: 'center' }}>GameTracker</h1>
