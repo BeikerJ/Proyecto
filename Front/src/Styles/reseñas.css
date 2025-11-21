@@ -1,0 +1,9 @@
+*
+
+body {
+    font-family: Arial, sans-serif;
+    background: #88e83a;
+    background: linear-gradient(90deg, rgba(136, 232, 58, 1) 0%, rgba(253, 187, 45, 1) 100%);
+    margin: 0;
+    padding: 0;
+}
