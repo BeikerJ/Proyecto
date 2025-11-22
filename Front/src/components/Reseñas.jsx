@@ -46,7 +46,6 @@ export default function Resenas() {
             setGames(res.data || []);
         } catch (err) {
             console.error('Error al obtener juegos:', err);
-            // no crítico; permitimos reseñas sin juego
         }
     };
 
@@ -82,19 +81,18 @@ export default function Resenas() {
             const res = await axios.post(FORM_API, nueva);
             if (res.data) {
                 setResenas((prev) => [res.data, ...prev]);
-                // update usernames set
                 setUsernames(prev => new Set(prev).add((res.data.usuario || '').toLowerCase()));
                 setSuccessMsg('Reseña enviada correctamente');
                 setTimeout(() => setSuccessMsg(''), 3000);
             }
-            // limpiar formulario
+
             setJuegoId('');
             setUsuario('');
             setComentario('');
             setCalificacion(5);
         } catch (err) {
             console.error('Error al enviar la reseña:', err);
-            // If server returned duplicate key error, show friendly message
+     
             const msg = err?.response?.data?.error || 'Error al enviar la reseña';
             setErrorMsg(msg);
             setTimeout(() => setErrorMsg(''), 4000);
@@ -103,7 +101,7 @@ export default function Resenas() {
         }
     };
 
-    // Check username uniqueness on the fly
+    
     useEffect(() => {
         const lower = (usuario || '').trim().toLowerCase();
         if (!lower) return setIsDuplicate(false);
@@ -114,7 +112,7 @@ export default function Resenas() {
         try {
             await axios.delete(`${FORM_API}/${id}`);
             setResenas((prev) => prev.filter((r) => r._id !== id));
-            // show delete confirmation in bottom-right
+           
             setDeleteMsg('Reseña borrada');
             setTimeout(() => setDeleteMsg(''), 3000);
         } catch (err) {
@@ -132,7 +130,6 @@ export default function Resenas() {
             {errorMsg && <div className="toast error">{errorMsg}</div>}
             {deleteMsg && <div className="toast success">{deleteMsg}</div>}
 
-            {/* Centered form inside a card with animation */}
             <div className="gamecard form-card fade-up">
                 <form onSubmit={handleSubmit} className="resena-form">
                     <label>
