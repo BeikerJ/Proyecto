@@ -38,7 +38,7 @@ export default function GameDetail({ game, onBack, onEdit }) {
           )}
         </div>
       </div>
-      {/* Reviews for this game */}
+
       <div style={{ maxWidth: 1100, margin: '20px auto' }}>
         <h3 style={{ marginTop: 18 }}>Reseñas</h3>
         <GameReviews juegoId={game._id} />
